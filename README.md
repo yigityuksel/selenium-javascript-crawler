@@ -7,5 +7,5 @@ To use it without chrome window show, add following code :
 
 To use it page with requires authentication, enable following line : 
 
-    chrome_options.add_argument("--user-data-dir={0}".format('C:\\Users\\yyu\\AppData\\Local\\Google\\Chrome\\UserData\\Profile 1'))
+    chrome_options.add_argument("--user-data-dir={0}".format('path-to-your-chrome-profile'))
 

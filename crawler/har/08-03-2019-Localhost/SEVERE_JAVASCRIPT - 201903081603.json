@@ -1,0 +1,56 @@
+[  
+    {  
+       "Url":"http://localhost:64617/sampoerna/id/investor-relations/shareholder-information",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/widget-table.min.js?v=636861828136362333 0:504 Uncaught TypeError: Cannot read property 'children' of undefined"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/email-alerts",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/sub-nav.min.js?v=636861828136053197 0:2066 Uncaught TypeError: Cannot read property 'offsetLeft' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/press-releases-and-events/2017-annual-meeting",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/investor-relations/press-releases-and-events/2017-annual-meeting 926:54 Uncaught TypeError: Cannot read property 'parentNode' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/pmi-investor-day-archives",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/sub-nav.min.js?v=636861828136053197 0:2066 Uncaught TypeError: Cannot read property 'offsetLeft' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/xbrl-documents",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/sub-nav.min.js?v=636861828136053197 0:2066 Uncaught TypeError: Cannot read property 'offsetLeft' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/press-releases-and-events/2018-annual-meeting",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/investor-relations/press-releases-and-events/2018-annual-meeting 965:54 Uncaught TypeError: Cannot read property 'parentNode' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/investor-day-2016",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/sub-nav.min.js?v=636861828136053197 0:2066 Uncaught TypeError: Cannot read property 'offsetLeft' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/investor-relations/press-releases-and-events/vote-your-proxy-2018",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/investor-relations/press-releases-and-events/vote-your-proxy-2018 969:59 Uncaught TypeError: Cannot read property 'parentNode' of null"
+    },
+    {  
+       "Url":"http://localhost:64617/bar-test",
+       "Error":"SEVERE",
+       "Source":"javascript",
+       "Message":"http://localhost:64617/Assets/js/modules/widget-chart.min.js?v=636861828136113021 0:1972 Uncaught TypeError: $(...).slider is not a function"
+    }
+ ]

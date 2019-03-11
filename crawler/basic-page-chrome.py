@@ -37,8 +37,9 @@ from selenium import webdriver
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--proxy-server={0}".format(proxy.proxy))
-#chrome_options.add_argument("--user-data-dir={0}".format('D:\\py\\selenium-testing\\chrome-profile'))
+chrome_options.add_argument("--user-data-dir={0}".format('C:\\Users\\yyu\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1'))
 chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--headless")
 
 driver = webdriver.Chrome(executable_path="D:\\Programs\\WebDrivers\\chromedriver.exe",chrome_options=chrome_options)
 

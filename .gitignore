@@ -1,5 +1,7 @@
 crawler/har/
 crawler/sitemaps/
 crawler/page-list\.txt
+crawler/data_url.json
+crawler/data.json
 *.xlsx
 *.log

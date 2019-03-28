@@ -58,6 +58,24 @@ for i, page in enumerate(pages):
     print('Crawling ' + str(i) + '/' + str(total_pages) + ' URL: ' + page)
     try:
         driver.get(page)
+
+        # SCROLL_PAUSE_TIME = 5.5
+        # index = 0
+
+        # bodyHeight = driver.execute_script("return document.body.clientHeight")
+        # clientHeight = driver.execute_script("return document.documentElement.clientHeight")
+        
+        # page_height = int(bodyHeight)
+        # client_height = int(clientHeight)
+        # max_bound = int(page_height / client_height)
+      
+        # while max_bound >= index:
+
+        #     driver.save_screenshot("D:\\Emakina-Projects\\crawler\\crawler\\screenshots\\{0}.png".format(index))         
+        #     time.sleep(SCROLL_PAUSE_TIME)
+        #     driver.execute_script("window.scrollTo(0,window.scrollY+window.innerHeight*.9)")
+        #     index += 1
+
         browser_log = driver.get_log('browser')
         for i in browser_log:        
             log = {

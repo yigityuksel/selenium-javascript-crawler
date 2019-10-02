@@ -1,5 +1,5 @@
 crawler/har/
-crawler/sitemaps/
+sitemaps/
 crawler/page-list\.txt
 crawler/data_url.json
 crawler/data.json

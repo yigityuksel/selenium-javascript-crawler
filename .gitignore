@@ -5,6 +5,8 @@ crawler/data_url.json
 crawler/data.json
 crawler/screenshots
 crawler/results
-crawler/404
+screenshooter/404
 *.xlsx
 *.log
+*.png
+*.txt

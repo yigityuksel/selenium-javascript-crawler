@@ -13,6 +13,8 @@ import time
 import json
 import requests
 import pandas as pd
+import logging
+import pathlib
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -21,15 +23,24 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
+current_path = str(pathlib.Path(__file__).resolve().parent)
+
 browser_mob_location = "D:\\Programs\\Browsermob\\bin\\browsermob-proxy"
 chrome_driver_location = "D:\\Programs\\WebDrivers\\chromedriver.exe"
-sitemap_location = "D:\\Emakina-Projects\\crawler\\crawler\\sitemaps\\prod3.txt"
 
-screen_shot_save_location = "D:\\Emakina-Projects\\crawler\\crawler\\screenshots\\"
-error_page_location = "D:\\Emakina-Projects\\crawler\\crawler\\404\\"
+sitemap_location = str(current_path) + "\\sitemaps\\prod3.txt"
+screen_shot_save_location = current_path + "\\screenshots\\"
+error_page_location = current_path + "\\404\\" + datetime.datetime.now().strftime('%Y%m%d%H%M') + "- 404.txt"
+logging_file_location = current_path + "\\logs\\" + datetime.datetime.now().strftime('%Y%m%d%H%M') + ".log"
 
 startingIndex = 0
-errorPages = []
+
+logging.basicConfig(filename=logging_file_location,
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 for proc in psutil.process_iter():
     # check whether the process name matches
@@ -55,9 +66,15 @@ chrome_options.add_argument("--log-level=3")
 
 driver = webdriver.Chrome(executable_path=chrome_driver_location,chrome_options=chrome_options)
 
-with open(sitemap_location, encoding="utf-8") as f:
+def Save404Page(page):
+    with open(error_page_location, 'a') as file:
+        file.write(page + "\n")
+
+with open(sitemap_location, 'r') as f:
     pages = f.readlines()
     pages = [x.strip() for x in pages]
+
+logger.info("Sitemap count : " + str(len(pages)))
 
 with tqdm(total=len(pages)) as pbar:
     for i, page in enumerate(pages):
@@ -65,39 +82,45 @@ with tqdm(total=len(pages)) as pbar:
         pbar.update(1)
         pbar.set_description("Processing")
 
-        if(i >= startingIndex ):
-            #print('Crawling ' + str(i) + '/' + str(total_pages) + ' URL: ' + page)
+        try:
+           
+            if(i >= startingIndex ):
 
-            driver.get(page)
+                logger.info("Crawling " + page)
 
-            page_result = requests.get(page)
-            
-            if(page_result.status_code != 200):
-                errorPages.append(page)    
+                driver.get(page)
 
-            total_width = 1920
-            total_height = driver.execute_script("return document.body.scrollHeight") + 200
+                page_result = requests.get(page)
+                
+                if(page_result.status_code != 200):
+                    Save404Page(page)
 
-            # current_position = 0
-            
-            # while(current_position <= total_height):
-            #     current_position += 100
-            #     driver.execute_script("window.scrollTo(0, " + str(current_position) + ");")
+                total_width = 1920
+                total_height = driver.execute_script("return document.body.scrollHeight") + 200
 
-            try:
-                driver.execute_script('document.getElementsByClassName("optanon-alert-box-wrapper")[0].style.visibility = "hidden"')
-            except:
-                pass
+                # current_position = 0
+                
+                # while(current_position <= total_height):
+                #     current_position += 100
+                #     driver.execute_script("window.scrollTo(0, " + str(current_position) + ");")
 
-            driver.set_window_size(total_width, total_height)
+                try:
+                    driver.execute_script('document.getElementsByClassName("optanon-alert-box-wrapper")[0].style.visibility = "hidden"')
+                except:
+                    pass
 
-            time.sleep(5)
+                driver.set_window_size(total_width, total_height)
 
-            driver.save_screenshot(screen_shot_save_location + "{0}.png".format(i+1))
+                time.sleep(5)
 
-with open(error_page_location + '404.txt', 'w') as file:
-    for item in errorPages:
-        file.write("%s\n" % item)
+                driver.save_screenshot(screen_shot_save_location + "{0}.png".format(i+1))
+                logger.info("Screenshoot is saved")
+       
+        except Exception as exception:
+            Save404Page(page + " - EXCEPTION ")
+            logger.error("System encountered with an error with following page " + page)
+            logger.error("Following error has been thrown " + str(exception))
+
 
 server.stop()
 driver.quit()

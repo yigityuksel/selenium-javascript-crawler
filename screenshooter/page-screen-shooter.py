@@ -70,7 +70,7 @@ def Save404Page(page):
     with open(error_page_location, 'a') as file:
         file.write(page + "\n")
 
-with open(sitemap_location, 'r') as f:
+with open(sitemap_location, 'r', encoding='utf-8') as f:
     pages = f.readlines()
     pages = [x.strip() for x in pages]
 
